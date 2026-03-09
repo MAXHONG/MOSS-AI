@@ -1,4 +1,4 @@
-"""ChannelManager — consumes inbound messages and dispatches them to the DeerFlow agent via LangGraph Server."""
+"""ChannelManager — consumes inbound messages and dispatches them to the MOSS AI agent via LangGraph Server."""
 
 from __future__ import annotations
 
@@ -130,7 +130,7 @@ def _format_artifact_text(artifacts: list[str]) -> str:
 
 
 class ChannelManager:
-    """Core dispatcher that bridges IM channels to the DeerFlow agent.
+    """Core dispatcher that bridges IM channels to the MOSS AI agent.
 
     It reads from the MessageBus inbound queue, creates/reuses threads on
     the LangGraph Server, sends messages via ``runs.wait``, and publishes
@@ -295,7 +295,7 @@ class ChannelManager:
     async def _handle_chat(self, msg: InboundMessage) -> None:
         client = self._get_client()
 
-        # Look up existing DeerFlow thread by topic_id (if present)
+        # Look up existing MOSS AI thread by topic_id (if present)
         thread_id = None
         if msg.topic_id:
             thread_id = self.store.get_thread_id(msg.channel_name, msg.chat_id, topic_id=msg.topic_id)

@@ -1,6 +1,6 @@
-# Contributing to DeerFlow
+# Contributing to MOSS AI
 
-Thank you for your interest in contributing to DeerFlow! This guide will help you set up your development environment and understand our development workflow.
+Thank you for your interest in contributing to MOSS AI! This guide will help you set up your development environment and understand our development workflow.
 
 ## Development Environment Setup
 
@@ -267,4 +267,4 @@ Every pull request runs the backend regression workflow at [.github/workflows/ba
 
 ## License
 
-By contributing to DeerFlow, you agree that your contributions will be licensed under the [MIT License](./LICENSE).
+By contributing to MOSS AI, you agree that your contributions will be licensed under the [MIT License](./LICENSE).

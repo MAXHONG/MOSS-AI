@@ -5,12 +5,12 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { I18nProvider } from "@/core/i18n/context";
+import { Providers } from "@/components/providers";
 import { detectLocaleServer } from "@/core/i18n/server";
 
 export const metadata: Metadata = {
-  title: "DeerFlow",
-  description: "A LangChain-based framework for building super agents.",
+  title: "MOSS AI",
+  description: "An open-source SuperAgent harness that researches, codes, and creates.",
 };
 
 const geist = Geist({
@@ -31,7 +31,7 @@ export default async function RootLayout({
     >
       <body>
         <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
-          <I18nProvider initialLocale={locale}>{children}</I18nProvider>
+          <Providers>{children}</Providers>
         </ThemeProvider>
       </body>
     </html>

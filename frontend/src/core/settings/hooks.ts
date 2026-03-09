@@ -16,12 +16,14 @@ export function useLocalSettings(): [
 ] {
   const [mounted, setMounted] = useState(false);
   const [state, setState] = useState<LocalSettings>(DEFAULT_LOCAL_SETTINGS);
+
   useLayoutEffect(() => {
     if (!mounted) {
       setState(getLocalSettings());
     }
     setMounted(true);
   }, [mounted]);
+
   const setter = useCallback(
     (
       key: keyof LocalSettings,
@@ -42,5 +44,6 @@ export function useLocalSettings(): [
     },
     [mounted],
   );
+
   return [state, setter];
 }

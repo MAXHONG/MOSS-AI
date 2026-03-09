@@ -1,9 +1,9 @@
-# DeerFlow - Unified Development Environment
+# MOSS AI - Unified Development Environment
 
 .PHONY: help config check install dev stop clean docker-init docker-start docker-stop docker-logs docker-logs-frontend docker-logs-gateway
 
 help:
-	@echo "DeerFlow Development Commands:"
+	@echo "MOSS AI Development Commands:"
 	@echo "  make config          - Generate local config files (aborts if config already exists)"
 	@echo "  make check           - Check if all required tools are installed"
 	@echo "  make install         - Install all dependencies (frontend + backend)"
@@ -162,7 +162,7 @@ dev:
 	@sleep 1
 	@echo ""
 	@echo "=========================================="
-	@echo "  Starting DeerFlow Development Server"
+	@echo "  Starting MOSS AI Development Server"
 	@echo "=========================================="
 	@echo ""
 	@echo "Services starting up..."
@@ -175,7 +175,7 @@ dev:
 			[ -f backend/config.yaml ] || \
 			[ -f config.yaml ]; \
 		}; then \
-		echo "✗ No DeerFlow config file found."; \
+		echo "✗ No MOSS AI config file found."; \
 		echo "  Checked these locations:"; \
 		echo "    - $$DEER_FLOW_CONFIG_PATH (when DEER_FLOW_CONFIG_PATH is set)"; \
 		echo "    - backend/config.yaml"; \
@@ -227,7 +227,7 @@ dev:
 	echo "✓ Nginx started on localhost:2026"; \
 	echo ""; \
 	echo "=========================================="; \
-	echo "  DeerFlow is ready!"; \
+	echo "  MOSS AI is ready!"; \
 	echo "=========================================="; \
 	echo ""; \
 	echo "  🌐 Application: http://localhost:2026"; \

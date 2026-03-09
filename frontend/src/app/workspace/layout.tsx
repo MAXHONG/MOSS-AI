@@ -8,20 +8,36 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { WorkspaceSidebar } from "@/components/workspace/workspace-sidebar";
 import { getLocalSettings, useLocalSettings } from "@/core/settings";
 
-const queryClient = new QueryClient();
+// Optimize QueryClient with default options for better caching
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      gcTime: 1000 * 60 * 30,
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
 export default function WorkspaceLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const [settings, setSettings] = useLocalSettings();
-  const [open, setOpen] = useState(false); // SSR default: open (matches server render)
+  const [open, setOpen] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
   useLayoutEffect(() => {
-    // Runs synchronously before first paint on the client — no visual flash
     setOpen(!getLocalSettings().layout.sidebar_collapsed);
+    setMounted(true);
   }, []);
+
   useEffect(() => {
-    setOpen(!settings.layout.sidebar_collapsed);
-  }, [settings.layout.sidebar_collapsed]);
+    if (mounted) {
+      setOpen(!settings.layout.sidebar_collapsed);
+    }
+  }, [settings.layout.sidebar_collapsed, mounted]);
+
   const handleOpenChange = useCallback(
     (open: boolean) => {
       setOpen(open);
@@ -29,6 +45,7 @@ export default function WorkspaceLayout({
     },
     [setSettings],
   );
+
   return (
     <QueryClientProvider client={queryClient}>
       <SidebarProvider

@@ -9,6 +9,7 @@ from src.gateway.config import get_gateway_config
 from src.gateway.routers import (
     agents,
     artifacts,
+    auth,
     channels,
     mcp,
     memory,
@@ -17,6 +18,7 @@ from src.gateway.routers import (
     suggestions,
     uploads,
 )
+from src.gateway.routers.admin import users as admin_users
 
 # Configure logging
 logging.basicConfig(
@@ -77,11 +79,11 @@ def create_app() -> FastAPI:
     """
 
     app = FastAPI(
-        title="DeerFlow API Gateway",
+        title="MOSS AI API Gateway",
         description="""
-## DeerFlow API Gateway
+## MOSS AI API Gateway
 
-API Gateway for DeerFlow - A LangGraph-based AI agent backend with sandbox execution capabilities.
+API Gateway for MOSS AI - An open-source AI agent backend with sandbox execution capabilities.
 
 ### Features
 
@@ -143,6 +145,14 @@ This gateway provides custom endpoints for models, MCP configuration, skills, an
                 "name": "health",
                 "description": "Health check and system status endpoints",
             },
+            {
+                "name": "auth",
+                "description": "User authentication and authorization",
+            },
+            {
+                "name": "admin",
+                "description": "Admin operations for user and system management",
+            },
         ],
     )
 
@@ -176,6 +186,12 @@ This gateway provides custom endpoints for models, MCP configuration, skills, an
     # Channels API is mounted at /api/channels
     app.include_router(channels.router)
 
+    # Auth API is mounted at /api/auth
+    app.include_router(auth.router)
+
+    # Admin API is mounted at /api/admin
+    app.include_router(admin_users.router)
+
     @app.get("/health", tags=["health"])
     async def health_check() -> dict:
         """Health check endpoint.
@@ -183,7 +199,7 @@ This gateway provides custom endpoints for models, MCP configuration, skills, an
         Returns:
             Service health status information.
         """
-        return {"status": "healthy", "service": "deer-flow-gateway"}
+        return {"status": "healthy", "service": "moss-ai-gateway"}
 
     return app
 

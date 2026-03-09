@@ -1,12 +1,12 @@
-"""DeerFlowClient — Embedded Python client for DeerFlow agent system.
+"""MOSS AIClient — Embedded Python client for MOSS AI agent system.
 
-Provides direct programmatic access to DeerFlow's agent capabilities
+Provides direct programmatic access to MOSS AI's agent capabilities
 without requiring LangGraph Server or Gateway API processes.
 
 Usage:
-    from src.client import DeerFlowClient
+    from src.client import MOSS AIClient
 
-    client = DeerFlowClient()
+    client = MOSS AIClient()
     response = client.chat("Analyze this paper for me", thread_id="my-thread")
     print(response)
 
@@ -62,10 +62,10 @@ class StreamEvent:
     data: dict[str, Any] = field(default_factory=dict)
 
 
-class DeerFlowClient:
-    """Embedded Python client for DeerFlow agent system.
+class MOSS AIClient:
+    """Embedded Python client for MOSS AI agent system.
 
-    Provides direct programmatic access to DeerFlow's agent capabilities
+    Provides direct programmatic access to MOSS AI's agent capabilities
     without requiring LangGraph Server or Gateway API processes.
 
     Note:
@@ -80,9 +80,9 @@ class DeerFlowClient:
 
     Example::
 
-        from src.client import DeerFlowClient
+        from src.client import MOSS AIClient
 
-        client = DeerFlowClient()
+        client = MOSS AIClient()
 
         # Simple one-shot
         print(client.chat("hello"))
