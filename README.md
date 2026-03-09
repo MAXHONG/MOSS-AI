@@ -1,14 +1,43 @@
 # MOSS AI - 2.0
 
-<a href="https://trendshift.io/repositories/14699" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14699" alt="bytedance%2Fdeer-flow | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-> On February 28th, 2026, MOSS AI claimed the 🏆 #1 spot on GitHub Trending following the launch of version 2. Thanks a million to our incredible community — you made this happen! 💪🔥
+> MOSS AI is an open-source **super agent harness** with **multi-user support** that orchestrates **sub-agents**, **memory**, and **sandboxes** to do almost anything — powered by **extensible skills**.
 
-MOSS AI (**D**eep **E**xploration and **E**fficient **R**esearch **Flow**) is an open-source **super agent harness** that orchestrates **sub-agents**, **memory**, and **sandboxes** to do almost anything — powered by **extensible skills**.
+## Features
 
-https://github.com/user-attachments/assets/a8bcadc4-e040-4cf2-8fda-dd768b999c18
+- 🔐 **Multi-User System**: User registration, login, and admin panel
+- 🤖 **Sub-Agents**: Complex task orchestration with parallel execution
+- 💾 **Memory**: Long-term memory with user profiles
+- 🏝️ **Sandbox**: Isolated execution environment for code and file operations
+- 🎯 **Skills**: Extensible skill system for custom workflows
+- 🌐 **IM Integration**: Telegram, Slack, Feishu support
 
-> [!NOTE]
-> **MOSS AI 2.0 is a ground-up rewrite.** It shares no code with v1. If you're looking for the original Deep Research framework, it's maintained on the [`1.x` branch](https://github.com/bytedance/deer-flow/tree/main-1.x) — contributions there are still welcome. Active development has moved to 2.0.
+---
+
+## Quick Start
+
+### Docker (Recommended)
+
+```bash
+# Clone the repository
+git clone https://github.com/MAXHONG/MOSS-AI.git
+cd MOSS-AI
+
+# Generate configuration
+make config
+
+# Start services
+make docker-start
+```
+
+Access at http://localhost:2026
+
+### Authentication
+
+After first start:
+1. Visit http://localhost:2026/login
+2. Click "Register" to create an account
+3. Login with your credentials
+4. Access admin panel at http://localhost:2026/admin (admin only)
 
 ## Official Website
 
@@ -67,7 +96,7 @@ MOSS AI has newly integrated the intelligent search and crawling toolset indepen
 1. **Clone the MOSS AI repository**
 
    ```bash
-   git clone https://github.com/bytedance/deer-flow.git
+   git clone https://github.com/MAXHONG/MOSS-AI.git
    cd deer-flow
    ```
 
