@@ -2,10 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { env } from "@/env";
+import { useAuth } from "@/core/auth";
 import type { User } from "@/core/auth/api";
 
-async function fetchUsers(): Promise<User[]> {
+async function fetchUsers(token: string): Promise<User[]> {
   const response = await fetch(`${env.NEXT_PUBLIC_BACKEND_BASE_URL || ""}/api/admin/users`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     credentials: "include",
   });
   if (!response.ok) {
@@ -18,13 +22,24 @@ export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const { user, isAuthenticated } = useAuth();
 
   useEffect(() => {
-    fetchUsers()
+    if (!isAuthenticated || !user) return;
+
+    // Get token from localStorage
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      setError("No authentication token");
+      setIsLoading(false);
+      return;
+    }
+
+    fetchUsers(token)
       .then(setUsers)
       .catch((err) => setError(err.message))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [isAuthenticated, user]);
 
   if (isLoading) {
     return (

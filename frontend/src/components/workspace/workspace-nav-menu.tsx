@@ -10,6 +10,7 @@ import {
   Settings2Icon,
   SettingsIcon,
   ShieldIcon,
+  UserIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -43,39 +44,38 @@ function NavMenuButtonContent({
   t: ReturnType<typeof useI18n>["t"];
   user: { username: string; role: string } | null;
 }) {
-  if (!user) {
+  // User is logged in - show user info
+  if (user) {
     return isSidebarOpen ? (
-      <div className="text-muted-foreground flex w-full items-center gap-2 text-left text-sm">
-        <SettingsIcon className="size-4" />
-        <span>{t.workspace.settingsAndMore}</span>
+      <div className="flex w-full items-center gap-2 text-left">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-medium">
+          {user.username.charAt(0).toUpperCase()}
+        </div>
+        <div className="flex flex-col items-start">
+          <span className="text-sm font-medium">{user.username}</span>
+          <span className="text-xs text-muted-foreground capitalize">{user.role}</span>
+        </div>
         <ChevronsUpDown className="text-muted-foreground ml-auto size-4" />
       </div>
     ) : (
       <div className="flex size-full items-center justify-center">
-        <SettingsIcon className="text-muted-foreground size-4" />
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-medium">
+          {user.username.charAt(0).toUpperCase()}
+        </div>
       </div>
     );
   }
 
-  // User is logged in - show user info
-  if (!user) return null;
-
+  // User not logged in - show settings
   return isSidebarOpen ? (
-    <div className="flex w-full items-center gap-2 text-left">
-      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-medium">
-        {user.username.charAt(0).toUpperCase()}
-      </div>
-      <div className="flex flex-col items-start">
-        <span className="text-sm font-medium">{user.username}</span>
-        <span className="text-xs text-muted-foreground">{user.role}</span>
-      </div>
+    <div className="text-muted-foreground flex w-full items-center gap-2 text-left text-sm">
+      <SettingsIcon className="size-4" />
+      <span>{t.workspace.settingsAndMore}</span>
       <ChevronsUpDown className="text-muted-foreground ml-auto size-4" />
     </div>
   ) : (
     <div className="flex size-full items-center justify-center">
-      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-medium">
-        {user.username.charAt(0).toUpperCase()}
-      </div>
+      <SettingsIcon className="text-muted-foreground size-4" />
     </div>
   );
 }
@@ -135,6 +135,13 @@ export function WorkspaceNavMenu() {
                 ) : null}
 
                 <DropdownMenuGroup>
+                  {user && (
+                    <DropdownMenuItem onClick={() => router.push("/settings/profile")}>
+                      <UserIcon />
+                      Profile
+                    </DropdownMenuItem>
+                  )}
+
                   <DropdownMenuItem
                     onClick={() => {
                       setSettingsDefaultSection("appearance");
