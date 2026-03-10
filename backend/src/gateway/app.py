@@ -18,6 +18,7 @@ from src.gateway.routers import (
     suggestions,
     uploads,
 )
+from src.audit import audit_router
 from src.gateway.routers.admin import users as admin_users
 
 # Configure logging
@@ -191,6 +192,7 @@ This gateway provides custom endpoints for models, MCP configuration, skills, an
 
     # Admin API is mounted at /api/admin
     app.include_router(admin_users.router)
+    app.include_router(audit_router, prefix="/api/admin")
 
     @app.get("/health", tags=["health"])
     async def health_check() -> dict:
