@@ -19,6 +19,8 @@ from src.gateway.routers import (
     uploads,
 )
 from src.audit import audit_router
+from src.gateway.routers.admin import docker as admin_docker
+from src.gateway.routers.admin import sandbox as admin_sandbox
 from src.gateway.routers.admin import users as admin_users
 
 # Configure logging
@@ -192,6 +194,8 @@ This gateway provides custom endpoints for models, MCP configuration, skills, an
 
     # Admin API is mounted at /api/admin
     app.include_router(admin_users.router)
+    app.include_router(admin_sandbox.router, prefix="/api/admin")
+    app.include_router(admin_docker.router, prefix="/api/admin")
     app.include_router(audit_router, prefix="/api/admin")
 
     @app.get("/health", tags=["health"])
