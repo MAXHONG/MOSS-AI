@@ -28,7 +28,7 @@ export default function AdminUsersPage() {
 
   if (isLoading) {
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex items-center justify-center py-10">
         <div className="text-slate-500">Loading...</div>
       </div>
     );
@@ -36,7 +36,7 @@ export default function AdminUsersPage() {
 
   if (error) {
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex items-center justify-center py-10">
         <div className="rounded-md bg-red-50 p-4 text-red-600 dark:bg-red-900/20 dark:text-red-400">
           {error}
         </div>
@@ -45,7 +45,7 @@ export default function AdminUsersPage() {
   }
 
   return (
-    <div className="container mx-auto p-6">
+    <div>
       <h1 className="mb-6 font-serif text-2xl font-bold">User Management</h1>
 
       <div className="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700">
