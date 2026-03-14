@@ -47,13 +47,62 @@ export const zhCN: Translations = {
 
   // Welcome
   welcome: {
-    greeting: "你好，欢迎回来！",
+    greeting: "把目标交给 Agent，而不只是聊天",
     description:
-      "欢迎使用 🦌 MOSS AI，一个完全开源的超级智能体。通过内置和自定义的 Skills，\nMOSS AI 可以帮你搜索网络、分析数据，还能为你生成幻灯片、\n图片、视频、播客及网页等，几乎可以做任何事情。",
+      "欢迎使用 🦌 MOSS AI，一个开源执行型智能体工作台。你只需要给出目标，它就能规划任务、检索信息、读写文件、协同子代理，并最终交付真正可用的结果，而不只是回答。",
 
     createYourOwnSkill: "创建你自己的 Agent SKill",
     createYourOwnSkillDescription:
       "创建你的 Agent Skill 来释放 MOSS AI 的潜力。通过自定义技能，MOSS AI\n可以帮你搜索网络、分析数据，还能为你生成幻灯片、\n网页等作品，几乎可以做任何事情。",
+    capabilityTitle: "MOSS AI 最擅长的事",
+    capabilitySubtitle: "更像 Manus 的体验，首先来自明确的执行承诺。",
+    capabilityBullets: [
+      "把模糊目标拆成可执行计划",
+      "把研究、写作、编码、产物生成整合成一条链路",
+      "用子代理处理长链路和多步骤任务",
+    ],
+    suggestedTitle: "你可以这样开始",
+    suggestedTasks: [
+      "分析我的仓库并给出产品升级路线图",
+      "调研竞品并整理一份上线策略简报",
+      "把一个想法变成落地页和宣传文案",
+    ],
+    modeLabel: "执行模式",
+    modeDescriptions: {
+      flash: "快速回答，编排最少",
+      thinking: "先思考再行动",
+      pro: "规划并执行多步骤任务",
+      ultra: "调用子代理获得更强吞吐",
+    },
+    cockpitTitle: "任务驾驶舱",
+    cockpitSubtitle:
+      "像操盘手一样启动任务：先定义使命、交付物与约束，再进入执行，让智能体一开始就站在正确轨道上。",
+    cockpitFields: {
+      mission: "使命",
+      deliverable: "交付物",
+      constraints: "约束条件",
+      deadline: "截止时间",
+    },
+    cockpitPresetsTitle: "高价值起手式",
+    cockpitPresets: [
+      "审计一个产品或代码仓库，并给出优先级路线图",
+      "研究市场、比较竞品，并输出上线简报",
+      "把一个原始想法变成落地页、文案和执行清单",
+    ],
+    cockpitFooter:
+      "最佳实践：明确告诉智能体成功标准、不可触碰的边界，以及你最终希望拿到什么产物。",
+    missionPanelTitle: "任务面板",
+    missionPanelDescription:
+      "发送前先像操盘手一样定义任务。这样智能体会拥有更清晰的执行合同和交付目标。",
+    missionFieldHint: "这次任务要智能体准确完成什么？",
+    deliverableFieldHint: "你最终想拿到什么：报告、路线图、PRD、代码、落地页等？",
+    constraintsFieldHint:
+      "填写范围限制、禁止动作、偏好工具、风格要求、预算、合规约束或仓库边界。",
+    deadlineFieldHint: "可选：任务时限、优先级或紧急程度。",
+    missionExamplesTitle: "好的任务表述方式",
+    routeModelTitle: "自动模型路由",
+    routeModelDescription:
+      "开启后，MOSS AI 会为强推理任务优先选择规划模型、为仓库修改优先选择代码模型、为轻量请求优先选择更快的模型。",
   },
 
   // Clipboard
@@ -92,11 +141,14 @@ export const zhCN: Translations = {
     searchModels: "搜索模型...",
     surpriseMe: "小惊喜",
     surpriseMePrompt: "给我一个小惊喜吧",
-    followupLoading: "正在生成可能的后续问题...",
+    followupLoading: "正在生成下一步行动建议...",
+    followupLabel: "下一步行动建议",
     followupConfirmTitle: "发送建议问题？",
     followupConfirmDescription: "当前输入框已有内容，选择发送方式。",
     followupConfirmAppend: "追加并发送",
     followupConfirmReplace: "替换并发送",
+    autoRouteOn: "自动路由已开启",
+    autoRouteOff: "自动路由已关闭",
     suggestions: [
       {
         suggestion: "写作",
@@ -200,6 +252,8 @@ export const zhCN: Translations = {
     reportIssue: "报告问题",
     contactUs: "联系我们",
     about: "关于 MOSS AI",
+    productLabel: "MOSS AI",
+    productTagline: "开源自主执行工作台",
   },
 
   // Conversation

@@ -40,6 +40,38 @@ export interface Translations {
     description: string;
     createYourOwnSkill: string;
     createYourOwnSkillDescription: string;
+    capabilityTitle: string;
+    capabilitySubtitle: string;
+    capabilityBullets: string[];
+    suggestedTitle: string;
+    suggestedTasks: string[];
+    modeLabel: string;
+    modeDescriptions: {
+      flash: string;
+      thinking: string;
+      pro: string;
+      ultra: string;
+    };
+    cockpitTitle: string;
+    cockpitSubtitle: string;
+    cockpitFields: {
+      mission: string;
+      deliverable: string;
+      constraints: string;
+      deadline: string;
+    };
+    cockpitPresetsTitle: string;
+    cockpitPresets: string[];
+    cockpitFooter: string;
+    missionPanelTitle: string;
+    missionPanelDescription: string;
+    missionFieldHint: string;
+    deliverableFieldHint: string;
+    constraintsFieldHint: string;
+    deadlineFieldHint: string;
+    missionExamplesTitle: string;
+    routeModelTitle: string;
+    routeModelDescription: string;
   };
 
   // Clipboard
@@ -77,10 +109,13 @@ export interface Translations {
     surpriseMe: string;
     surpriseMePrompt: string;
     followupLoading: string;
+    followupLabel: string;
     followupConfirmTitle: string;
     followupConfirmDescription: string;
     followupConfirmAppend: string;
     followupConfirmReplace: string;
+    autoRouteOn: string;
+    autoRouteOff: string;
     suggestions: {
       suggestion: string;
       prompt: string;
@@ -149,6 +184,8 @@ export interface Translations {
     reportIssue: string;
     contactUs: string;
     about: string;
+    productLabel: string;
+    productTagline: string;
   };
 
   // Conversation

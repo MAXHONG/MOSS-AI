@@ -4,6 +4,19 @@
 
 ## Features
 
+## Product Direction: Building MOSS AI like Manus
+
+This fork is being evolved toward a more **execution-first autonomous product** inspired by Manus:
+
+- **Goal-first UX**: users should start from a clear mission, not a blank chat box
+- **Execution visibility**: planning, mode selection, and next-best actions should be legible
+- **Model fit clarity**: users should understand which model is best for planning vs. speed
+- **Agentic continuity**: every answer should naturally push the task toward the next milestone
+
+The first iteration in this repo upgrades the workspace onboarding, model chooser, and follow-up guidance so the product feels closer to a real autonomous workbench.
+
+The second iteration adds a stronger **mission cockpit** concept and a practical **Tencent Cloud Coding model routing template** so teams can wire planning models, coding models, and general execution models into one product surface.
+
 - 🔐 **Multi-User System**: User registration, login, and admin panel
 - 🤖 **Sub-Agents**: Complex task orchestration with parallel execution
 - 💾 **Memory**: Long-term memory with user profiles
@@ -126,6 +139,26 @@ MOSS AI has newly integrated the intelligent search and crawling toolset indepen
    ```
 
   
+### Tencent Cloud Coding quick template
+
+If you want a Manus-like multi-model stack using the Tencent-compatible endpoints, add your API key to `.env`:
+
+```bash
+TENCENT_CLOUD_CODING_API_KEY=your-key
+```
+
+Then adapt the ready-made examples in `config.example.yaml` for these endpoints:
+
+- OpenAI-compatible: `https://api.lkeap.cloud.tencent.com/coding/v3`
+- Anthropic-compatible: `https://api.lkeap.cloud.tencent.com/coding/anthropic`
+
+A practical routing split is:
+
+- `hunyuan-t1` / `hunyuan-2.0-thinking` → planning, decomposition, difficult reasoning
+- `tc-code-latest` → code editing, refactoring, repository tasks
+- `kimi-k2.5` / `glm-5` / `minimax-m2.5` → general execution, synthesis, long-context tasks
+- `hunyuan-turbos` / `hunyuan-2.0-instruct` → fast iteration and lightweight tasks
+
 4. **Set API keys for your configured model(s)**
 
    Choose one of the following methods:
