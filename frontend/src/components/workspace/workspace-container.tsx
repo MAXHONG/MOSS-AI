@@ -51,7 +51,15 @@ export function WorkspaceHeader({
       )}
       {...props}
     >
-      <div className="flex items-center gap-2 px-4">
+      <div className="flex items-center gap-3 px-4">
+        <div className="hidden min-w-0 md:block">
+          <div className="text-foreground text-sm font-semibold">
+            {t.workspace.productLabel}
+          </div>
+          <div className="text-muted-foreground text-[11px] leading-4">
+            {t.workspace.productTagline}
+          </div>
+        </div>
         <Breadcrumb>
           <BreadcrumbList>
             {segments?.[0] && (

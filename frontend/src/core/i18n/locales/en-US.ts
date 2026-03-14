@@ -47,13 +47,50 @@ export const enUS: Translations = {
 
   // Welcome
   welcome: {
-    greeting: "Hello, again!",
+    greeting: "Build with an agent, not a chatbot",
     description:
-      "Welcome to 🦌 MOSS AI, an open source super agent. With built-in and custom skills, MOSS AI helps you search on the web, analyze data, and generate artifacts like slides, web pages and do almost anything.",
+      "Welcome to 🦌 MOSS AI, your open source execution agent. Give it a goal, let it plan, research, write files, coordinate subagents, and return working deliverables instead of just answers.",
 
     createYourOwnSkill: "Create Your Own Skill",
     createYourOwnSkillDescription:
       "Create your own skill to release the power of MOSS AI. With customized skills,\nMOSS AI can help you search on the web, analyze data, and generate\n artifacts like slides, web pages and do almost anything.",
+    capabilityTitle: "What MOSS AI does best",
+    capabilitySubtitle: "A Manus-style experience starts with clear execution promises.",
+    capabilityBullets: [
+      "Turn vague goals into executable plans",
+      "Research, code, write, and create artifacts in one flow",
+      "Use subagents for long and multi-step work",
+    ],
+    suggestedTitle: "Try starting with",
+    suggestedTasks: [
+      "Analyze my repo and propose a product roadmap",
+      "Research competitors and build a launch brief",
+      "Turn an idea into a landing page and copy",
+    ],
+    modeLabel: "Execution mode",
+    modeDescriptions: {
+      flash: "Fast answer, minimal orchestration",
+      thinking: "Adds reasoning before action",
+      pro: "Plans and executes multi-step tasks",
+      ultra: "Uses subagents for maximal throughput",
+    },
+    cockpitTitle: "Mission cockpit",
+    cockpitSubtitle:
+      "Structure the work like an operator: clarify the mission, define the deliverable, and make constraints visible before execution starts.",
+    cockpitFields: {
+      mission: "Mission",
+      deliverable: "Deliverable",
+      constraints: "Constraints",
+      deadline: "Deadline",
+    },
+    cockpitPresetsTitle: "High-leverage starting frames",
+    cockpitPresets: [
+      "Audit a product or repo and propose a prioritized roadmap",
+      "Research a market, compare competitors, and produce a launch brief",
+      "Turn a raw idea into a landing page, copy, and execution checklist",
+    ],
+    cockpitFooter:
+      "Best practice: tell the agent what success looks like, what to avoid, and what artifact you expect back.",
   },
 
   // Clipboard
@@ -96,7 +133,8 @@ export const enUS: Translations = {
     searchModels: "Search models...",
     surpriseMe: "Surprise",
     surpriseMePrompt: "Surprise me",
-    followupLoading: "Generating follow-up questions...",
+    followupLoading: "Generating next best actions...",
+    followupLabel: "Next best actions",
     followupConfirmTitle: "Send suggestion?",
     followupConfirmDescription:
       "You already have text in the input. Choose how to send it.",
@@ -211,6 +249,8 @@ export const enUS: Translations = {
     reportIssue: "Report a issue",
     contactUs: "Contact us",
     about: "About MOSS AI",
+    productLabel: "MOSS AI",
+    productTagline: "Open source autonomous workbench",
   },
 
   // Conversation

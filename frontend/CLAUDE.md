@@ -63,6 +63,15 @@ The frontend is a stateful chat application. Users create **threads** (conversat
 3. TanStack Query manages server state; localStorage stores user settings
 4. Components subscribe to thread state and render updates
 
+### Product Experience Priorities
+
+- Treat the new-thread state as a **task cockpit**, not a passive empty state
+- Prefer UI decisions that increase user confidence in agent execution: mode clarity, model clarity, and next-step guidance
+- Model selection should communicate *why* a model is a fit, not only its name
+- Follow-up suggestions should behave like **next best actions** that continue work, closer to Manus-style product behavior
+- The mission cockpit should help users specify mission, deliverable, constraints, and time horizon before execution starts
+- Multi-model products should expose practical routing hints so users understand which model is best for planning, coding, research, or speed
+
 ### Key Patterns
 
 - **Server Components by default**, `"use client"` only for interactive components

@@ -106,6 +106,78 @@ models:
   #       thinking:
   #         type: enabled
 
+  # Example: Tencent Cloud Coding API (OpenAI-compatible)
+  # Recommended Manus-style routing strategy:
+  # - hunyuan-t1 / hunyuan-2.0-thinking: planning, decomposition, hard reasoning
+  # - tc-code-latest: code generation and repo modifications
+  # - kimi-k2.5 / glm-5 / minimax-m2.5: general execution, long-context synthesis, writing
+  # - hunyuan-turbos / hunyuan-2.0-instruct: fast replies and lightweight tool use
+  #
+  # OpenAI-compatible endpoint:
+  #   https://api.lkeap.cloud.tencent.com/coding/v3
+  # Anthropic-compatible endpoint:
+  #   https://api.lkeap.cloud.tencent.com/coding/anthropic
+  #
+  # It is recommended to store the shared API key in .env:
+  #   TENCENT_CLOUD_CODING_API_KEY=your-key
+  #
+  # - name: hunyuan-t1
+  #   display_name: Hunyuan T1
+  #   description: Tencent reasoning model for planning, decomposition, and difficult tasks.
+  #   provider: Tencent Cloud Coding
+  #   recommended_mode: pro
+  #   strengths: [planning, reasoning]
+  #   use: langchain_openai:ChatOpenAI
+  #   model: hunyuan-t1
+  #   api_key: $TENCENT_CLOUD_CODING_API_KEY
+  #   base_url: https://api.lkeap.cloud.tencent.com/coding/v3
+  #   max_tokens: 16384
+  #   temperature: 0.2
+  #   supports_thinking: true
+  #   supports_reasoning_effort: true
+  #   when_thinking_enabled:
+  #     extra_body:
+  #       thinking:
+  #         type: enabled
+  #
+  # - name: tc-code-latest
+  #   display_name: TC Code Latest
+  #   description: Tencent code-specialized model for repo changes, debugging, and refactors.
+  #   provider: Tencent Cloud Coding
+  #   recommended_mode: pro
+  #   strengths: [coding, editing, repo]
+  #   use: langchain_openai:ChatOpenAI
+  #   model: tc-code-latest
+  #   api_key: $TENCENT_CLOUD_CODING_API_KEY
+  #   base_url: https://api.lkeap.cloud.tencent.com/coding/v3
+  #   max_tokens: 16384
+  #   temperature: 0.1
+  #   supports_thinking: true
+  #   supports_reasoning_effort: true
+  #   when_thinking_enabled:
+  #     extra_body:
+  #       thinking:
+  #         type: enabled
+  #
+  # - name: kimi-k2.5
+  #   display_name: Kimi K2.5 (Tencent Gateway)
+  #   description: Strong long-context model for research, synthesis, and writing-heavy execution.
+  #   provider: Tencent Cloud Coding
+  #   recommended_mode: ultra
+  #   strengths: [research, long-context, writing]
+  #   use: langchain_openai:ChatOpenAI
+  #   model: kimi-k2.5
+  #   api_key: $TENCENT_CLOUD_CODING_API_KEY
+  #   base_url: https://api.lkeap.cloud.tencent.com/coding/v3
+  #   max_tokens: 32768
+  #   temperature: 0.3
+  #   supports_thinking: true
+  #   supports_vision: true
+  #   when_thinking_enabled:
+  #     extra_body:
+  #       thinking:
+  #         type: enabled
+
 # ============================================================================
 # Tool Groups Configuration
 # ============================================================================
