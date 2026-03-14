@@ -63,6 +63,15 @@ export interface Translations {
     cockpitPresetsTitle: string;
     cockpitPresets: string[];
     cockpitFooter: string;
+    missionPanelTitle: string;
+    missionPanelDescription: string;
+    missionFieldHint: string;
+    deliverableFieldHint: string;
+    constraintsFieldHint: string;
+    deadlineFieldHint: string;
+    missionExamplesTitle: string;
+    routeModelTitle: string;
+    routeModelDescription: string;
   };
 
   // Clipboard
@@ -105,6 +114,8 @@ export interface Translations {
     followupConfirmDescription: string;
     followupConfirmAppend: string;
     followupConfirmReplace: string;
+    autoRouteOn: string;
+    autoRouteOff: string;
     suggestions: {
       suggestion: string;
       prompt: string;

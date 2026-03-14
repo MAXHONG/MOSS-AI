@@ -8,6 +8,11 @@ export const DEFAULT_LOCAL_SETTINGS: LocalSettings = {
     model_name: undefined,
     mode: undefined,
     reasoning_effort: undefined,
+    auto_route_model: true,
+    mission: "",
+    deliverable: "",
+    constraints: "",
+    deadline: "",
   },
   layout: {
     sidebar_collapsed: false,
@@ -26,6 +31,11 @@ export interface LocalSettings {
   > & {
     mode: "flash" | "thinking" | "pro" | "ultra" | undefined;
     reasoning_effort?: "minimal" | "low" | "medium" | "high";
+    auto_route_model?: boolean;
+    mission?: string;
+    deliverable?: string;
+    constraints?: string;
+    deadline?: string;
   };
   layout: {
     sidebar_collapsed: boolean;

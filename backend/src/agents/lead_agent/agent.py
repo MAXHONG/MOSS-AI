@@ -38,6 +38,41 @@ def _resolve_model_name(requested_model_name: str | None = None) -> str:
     return default_model_name
 
 
+def _route_model_name(config: RunnableConfig, requested_model_name: str | None = None) -> str:
+    """Route model automatically based on runtime intent when auto routing is enabled."""
+    resolved_requested = _resolve_model_name(requested_model_name) if requested_model_name else None
+    configurable = config.get("configurable", {})
+    if not configurable.get("auto_route_model", False):
+        return resolved_requested or _resolve_model_name(requested_model_name)
+
+    app_config = get_app_config()
+    models = app_config.models
+    if not models:
+        raise ValueError("No chat models are configured. Please configure at least one model in config.yaml.")
+
+    mission_text = " ".join(
+        str(configurable.get(key, "") or "")
+        for key in ["mission", "deliverable", "constraints", "deadline"]
+    ).lower()
+    is_plan_mode = configurable.get("is_plan_mode", False)
+    subagent_enabled = configurable.get("subagent_enabled", False)
+    thinking_enabled = configurable.get("thinking_enabled", True)
+
+    def preferred(predicate):
+        for model in models:
+            if predicate(model):
+                return model.name
+        return None
+
+    if any(keyword in mission_text for keyword in ["code", "repo", "refactor", "bug", "debug", "implement", "fix", "pull request", "pr"]):
+        return preferred(lambda m: any(tag in (getattr(m, "strengths", []) or []) for tag in ["coding", "editing", "repo"])) or resolved_requested or _resolve_model_name()
+
+    if subagent_enabled or is_plan_mode or thinking_enabled or any(keyword in mission_text for keyword in ["plan", "roadmap", "strategy", "research", "analyze", "analysis", "compare"]):
+        return preferred(lambda m: getattr(m, "supports_thinking", False)) or resolved_requested or _resolve_model_name()
+
+    return preferred(lambda m: not getattr(m, "supports_thinking", False)) or resolved_requested or _resolve_model_name()
+
+
 def _create_summarization_middleware() -> SummarizationMiddleware | None:
     """Create and configure the summarization middleware from config."""
     config = get_summarization_config()
@@ -272,7 +307,7 @@ def make_lead_agent(config: RunnableConfig):
     agent_model_name = agent_config.model if agent_config and agent_config.model else _resolve_model_name()
 
     # Final model name resolution with request override, then agent config, then global default
-    model_name = requested_model_name or agent_model_name
+    model_name = _route_model_name(config, requested_model_name or agent_model_name)
 
     app_config = get_app_config()
     model_config = app_config.get_model_config(model_name) if model_name else None

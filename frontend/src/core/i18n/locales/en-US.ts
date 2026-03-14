@@ -91,6 +91,18 @@ export const enUS: Translations = {
     ],
     cockpitFooter:
       "Best practice: tell the agent what success looks like, what to avoid, and what artifact you expect back.",
+    missionPanelTitle: "Mission panel",
+    missionPanelDescription:
+      "Before you hit send, frame the task like an operator. This gives the agent a clearer execution contract.",
+    missionFieldHint: "What exactly should the agent accomplish?",
+    deliverableFieldHint: "What should come back: report, roadmap, PRD, code, landing page, etc.?",
+    constraintsFieldHint:
+      "Scope limits, forbidden actions, preferred tools, style rules, budget, compliance, or repo boundaries.",
+    deadlineFieldHint: "Optional time horizon or urgency signal.",
+    missionExamplesTitle: "Good mission frames",
+    routeModelTitle: "Automatic model routing",
+    routeModelDescription:
+      "When enabled, MOSS AI will favor planning models for reasoning, code models for repo tasks, and faster models for lightweight prompts.",
   },
 
   // Clipboard
@@ -140,6 +152,8 @@ export const enUS: Translations = {
       "You already have text in the input. Choose how to send it.",
     followupConfirmAppend: "Append & send",
     followupConfirmReplace: "Replace & send",
+    autoRouteOn: "Auto routing on",
+    autoRouteOff: "Auto routing off",
     suggestions: [
       {
         suggestion: "Write",

@@ -10,6 +10,7 @@ import {
   PlusIcon,
   SparklesIcon,
   RocketIcon,
+  RouteIcon,
   TelescopeIcon,
   WandSparklesIcon,
   XIcon,
@@ -141,6 +142,62 @@ function getModelHint(model: Model | undefined) {
   return "Best for rapid answers, lightweight tool use, and iteration";
 }
 
+function getAutoRoutedModel(
+  models: Model[],
+  context: {
+    mission?: string;
+    deliverable?: string;
+    constraints?: string;
+    deadline?: string;
+    mode?: InputMode;
+  },
+) {
+  const missionText = [
+    context.mission,
+    context.deliverable,
+    context.constraints,
+    context.deadline,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  const matchByStrength = (...targets: string[]) =>
+    models.find((model) =>
+      (model.strengths ?? []).some((strength) => targets.includes(strength)),
+    );
+
+  if (
+    ["code", "repo", "refactor", "bug", "debug", "implement", "fix", "pr"]
+      .some((keyword) => missionText.includes(keyword))
+  ) {
+    return (
+      matchByStrength("coding", "editing", "repo") ??
+      models.find((model) => model.name.includes("code")) ??
+      models[0]
+    );
+  }
+
+  if (
+    context.mode === "ultra" ||
+    context.mode === "pro" ||
+    ["plan", "roadmap", "strategy", "research", "analyze", "analysis", "compare"]
+      .some((keyword) => missionText.includes(keyword))
+  ) {
+    return (
+      matchByStrength("planning", "reasoning", "research", "long-context") ??
+      models.find((model) => model.supports_thinking) ??
+      models[0]
+    );
+  }
+
+  return (
+    models.find((model) => !model.supports_thinking) ??
+    matchByStrength("speed") ??
+    models[0]
+  );
+}
+
 export function InputBox({
   className,
   disabled,
@@ -185,6 +242,7 @@ export function InputBox({
   const { t } = useI18n();
   const searchParams = useSearchParams();
   const [modelDialogOpen, setModelDialogOpen] = useState(false);
+  const autoRouteModel = context.auto_route_model ?? true;
   const { models } = useModels();
   const { thread, isMock } = useThread();
   const { textInput } = usePromptInputController();
@@ -205,8 +263,11 @@ export function InputBox({
     if (models.length === 0) {
       return;
     }
+    const routedModel = autoRouteModel
+      ? getAutoRoutedModel(models, context)
+      : undefined;
     const currentModel = models.find((m) => m.name === context.model_name);
-    const fallbackModel = currentModel ?? models[0]!;
+    const fallbackModel = routedModel ?? currentModel ?? models[0]!;
     const supportsThinking = fallbackModel.supports_thinking ?? false;
     const nextModelName = fallbackModel.name;
     const nextMode = getResolvedMode(context.mode, supportsThinking);
@@ -220,7 +281,7 @@ export function InputBox({
       model_name: nextModelName,
       mode: nextMode,
     });
-  }, [context, models, onContextChange]);
+  }, [autoRouteModel, context, models, onContextChange]);
 
   const selectedModel = useMemo(() => {
     if (models.length === 0) {
@@ -248,6 +309,7 @@ export function InputBox({
       onContextChange?.({
         ...context,
         model_name,
+        auto_route_model: false,
         mode: getResolvedMode(context.mode, model.supports_thinking ?? false),
         reasoning_effort: context.reasoning_effort,
       });
@@ -775,6 +837,29 @@ export function InputBox({
                 </div>
               )}
             </div>
+            <Tooltip
+              content={
+                autoRouteModel ? t.inputBox.autoRouteOn : t.inputBox.autoRouteOff
+              }
+            >
+              <PromptInputButton
+                onClick={() =>
+                  onContextChange?.({
+                    ...context,
+                    auto_route_model: !autoRouteModel,
+                  })
+                }
+              >
+                <RouteIcon
+                  className={cn(
+                    "size-4",
+                    autoRouteModel
+                      ? "text-emerald-500"
+                      : "text-muted-foreground",
+                  )}
+                />
+              </PromptInputButton>
+            </Tooltip>
             <ModelSelector
               open={modelDialogOpen}
               onOpenChange={setModelDialogOpen}

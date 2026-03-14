@@ -91,6 +91,18 @@ export const zhCN: Translations = {
     ],
     cockpitFooter:
       "最佳实践：明确告诉智能体成功标准、不可触碰的边界，以及你最终希望拿到什么产物。",
+    missionPanelTitle: "任务面板",
+    missionPanelDescription:
+      "发送前先像操盘手一样定义任务。这样智能体会拥有更清晰的执行合同和交付目标。",
+    missionFieldHint: "这次任务要智能体准确完成什么？",
+    deliverableFieldHint: "你最终想拿到什么：报告、路线图、PRD、代码、落地页等？",
+    constraintsFieldHint:
+      "填写范围限制、禁止动作、偏好工具、风格要求、预算、合规约束或仓库边界。",
+    deadlineFieldHint: "可选：任务时限、优先级或紧急程度。",
+    missionExamplesTitle: "好的任务表述方式",
+    routeModelTitle: "自动模型路由",
+    routeModelDescription:
+      "开启后，MOSS AI 会为强推理任务优先选择规划模型、为仓库修改优先选择代码模型、为轻量请求优先选择更快的模型。",
   },
 
   // Clipboard
@@ -135,6 +147,8 @@ export const zhCN: Translations = {
     followupConfirmDescription: "当前输入框已有内容，选择发送方式。",
     followupConfirmAppend: "追加并发送",
     followupConfirmReplace: "替换并发送",
+    autoRouteOn: "自动路由已开启",
+    autoRouteOff: "自动路由已关闭",
     suggestions: [
       {
         suggestion: "写作",
